@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static\jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#receiver").change(function(){
+                var receive=$("#receiver").val()
+
+                $.ajax({
+                    url:"{{url_for('checkreceivername')}}",
+                    data:{'nam':receive},
+                    success:function(data){
+                        if(data.valid=="not exist"){
+                            alert("user not exist")
+                        }
+                    }
+
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="POST" action="{{url_for ('sendmailaction')}}">
+    <table>
+        <input type="hidden" name="id" value="{{uid}}">
+        <tr>
+            <td>Receivername</td>
+            <td><input type="text" name="receivername" id="receiver"></td>
+        </tr>
+
+        <tr>
+            <td>Subject</td>
+            <td><input type="text" name="subject"></td>
+        </tr>
+
+        <tr>
+            <td>Message</td>
+            <td><textarea name="message"></textarea></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="send"></td>
+        </tr>
+        
+    </table>
+</form>
+</body>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endif %}
+
+</html>

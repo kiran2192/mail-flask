@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>SenderName</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+
+        {% for v in view %}
+        <tr>
+            <td>{{v.username}}</td>
+            <td>{{v.subject}}</td>
+            <td>{{v.message}}</td>
+            <td>{{v.date}}</td>
+            <td>{{v.time}}</td>
+
+            <td><a href="{{url_for ('delete',uid=v.id)}}">DELETE</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

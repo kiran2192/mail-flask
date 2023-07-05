@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="{{url_for ('movetotrash')}}">
+    <table>
+        <tr>
+            <th>Sendername</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+
+        {% for v in view %}
+        <tr>
+            <td>{{v.username}}</td>
+            <td>{{v.subject}}</td>
+            <td>{{v.message}}</td>
+            <td>{{v.date}}</td>
+            <td>{{v.time}}</td>
+
+            <td><input type="checkbox" name="checkbox" value="{{v.id}}"></td>
+            <td><a href="{{url_for ('forwardmsg',uid=v.id)}}">Forward Message</a></td>
+            <td><a href="{{url_for('reply',uid=v.id)}}">Reply</a></td>
+        </tr> 
+        {% endfor %}   
+        <td><input type="submit" value="Move to trash"></td>
+    </table>
+    </form>
+</body>
+</html>

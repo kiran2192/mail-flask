@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static\jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#user").change(function(){
+                var usr=$("#user").val()
+
+            $.ajax({
+                url:"{{url_for('checkusername')}}",
+                data:{'nm':usr},
+                success:function(data){
+                    if(data.valid=="exist"){
+                        alert("user already exist")
+                    }
+                }
+            });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="POST" action="{{url_for ('registeraction')}}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address"></textarea></td>
+        </tr>
+
+        <tr>
+            <td>Gender</td>
+            <td><input type="radio" name="gender" value="male">MALE
+            <input type="radio" name="gender" value="female">FEMALE</td>
+
+        </tr>
+
+        <tr>
+            <td>Country</td>
+            <td><select name="country">
+                <option value="">--select--</option>
+                <option value="India">India</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="China">China</option>
+                <option value="Japan">Japan</option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td>Phone</td>
+            <td><input type="text" name="phone"></td>
+        </tr>
+        
+        <tr>
+            <td>UserName</td>
+            <td><input type="text" name="username" id="user">@mymail.com</td>
+        </tr>
+
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" name="register"></td>
+        </tr>
+
+
+
+
+
+
+    </table>
+</form>
+</body>
+{% if get_flashed_messages () %}
+{% for msg in get_flashed_messages() %}
+<script>
+    alert("{{msg}}")
+</script>
+{% endfor %}
+{% endif %}
+
+</html>

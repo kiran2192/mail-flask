@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static\jquery-1.8.3.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#country").change(function(){
+                var con=$("#country").val()
+
+                $.ajax({
+                    url:"{{url_for('getstate')}}",
+                    data:{'country':con},
+                    success:function(data){
+                        $("#state").html(data)
+                    }
+
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="POST" action="{{url_for('addplace')}}">
+    <table>
+        <tr>
+            <td>country</td>
+               <td><select name="country" id="country">
+                    <option value="">--select--</option>
+                    {% for v in country %} 
+                    <option value="{{v.id}}">{{v.name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>State</td>
+                <td><select name="state" id="state">
+                    <option value="">--select--</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Place</td>
+            <td><input type="text" name="place"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="submit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

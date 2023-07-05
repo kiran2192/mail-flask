@@ -1,0 +1,14 @@
+
+welcome
+<h2><a href="{{url_for('updateprofile')}}">Update Profile</a></h2>
+<h2><a href="{{url_for ('compose')}}">Compose</a></h2>
+<h2><a href="{{url_for ('viewmessage')}}">View Message</a><h2>
+<h2><a href="{{url_for ('inbox')}}">Inbox</a></h2>
+<h2><a href="{{url_for ('viewtrash')}}">View Trash</a></h2>
+<h2><a href="{{url_for('country')}}">Country</a></h2>
+<h2><a href="{{url_for('logout')}}">Logout</a></h2>
+{% if msg %}
+<script>
+    alert('{{msg}}')
+</script>
+{% endif %}

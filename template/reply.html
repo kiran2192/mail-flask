@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{session['username']}}</h1>
+    <form method="POST" action="{{url_for('replyaction')}}">
+    <table>
+        <td><input type="hidden" name="id" value="{{uid}}"></td>
+        {% for v in view %} 
+
+        <tr>
+            <td>ReceiverName</td>
+            <td><input type="text" name="receivername" value="{{v.username}}" readonly></td>
+        </tr>
+
+        <tr>
+            <td>Subject</td>
+            <td><input type="text" name="subject"></td>
+        </tr>
+
+        <tr>
+            <td>Message</td>
+            <td><input type="text" name="message"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="send"></td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</form>
+</body>
+{% if msg %} 
+<script>
+    alert('{{msg}}')
+</script>
+{% endif %}
+</html>

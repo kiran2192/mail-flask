@@ -1,0 +1,8 @@
+<h2><a href="{{url_for ('register')}}">Register</a></h2>
+<h2><a href="{{url_for ('login')}}">Login</a></h2>
+
+{% if msg %}
+<script>
+    alert('{{msg}}')
+</script>
+{% endif %}
